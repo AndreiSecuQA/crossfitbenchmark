@@ -74,7 +74,7 @@ async def ask_weight(update: Update, context: ContextTypes.DEFAULT_TYPE):
     height = context.user_data["height"]
 
     async with async_session_factory() as db:
-        is_first_admin = tg.id == FIRST_ADMIN_ID
+        is_first_admin = FIRST_ADMIN_ID is not None and tg.id == FIRST_ADMIN_ID
         user = User(
             telegram_id=tg.id,
             username=tg.username,
